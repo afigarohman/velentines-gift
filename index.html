@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Gift Hunt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-squares">
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+    </div>
+
+    <div id="page1" class="container glass">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5Z3Z5/26FLdmIp6wJr91J4k/giphy.gif" class="sticker">
+        <h1>Will you be my Valentine? 🌹</h1>
+        <p class="subtitle">Please say yes...</p>
+        <div class="btn-group">
+            <button class="yes" onclick="goToGifts()">YES, I DO! 😍</button>
+            <button class="no" id="btnNo">Gak Dulu 😜</button>
+        </div>
+    </div>
+
+    <div id="page2" class="container glass hidden" style="min-height: 450px;">
+        <h2>Pilih 3 Hadiahmu! 🎁</h2>
+        <p class="subtitle">Klik kado mana saja, hati-hati ada yang terkunci...</p>
+        
+        <div class="floating-area">
+            <div class="gift-box float-1" id="box1" onclick="pilihKado(1)">
+                <img src="img/icon-kado.png" alt="Kado">
+            </div>
+            <div class="gift-box float-2" id="box2" onclick="pilihKado(2)">
+                <img src="img/icon-kado.png" alt="Kado">
+            </div>
+            <div class="gift-box float-3" id="box3" onclick="pilihKado(3)">
+                <img src="img/icon-kado.png" alt="Kado">
+            </div>
+        </div>
+    </div>
+
+    <div id="page3" class="container glass hidden">
+        <h1>Yeay! Happy Valentine! ❤️</h1>
+        <p class="subtitle">Semoga kamu suka semua hadiahnya ya!</p>
+        <img src="img/gif_peluk.gif" class="sticker" style="width: 200px;">
+    </div>
+
+    <div id="giftModal" class="modal hidden">
+        <div class="modal-content glass-dark">
+            <span class="close-btn" onclick="tutupModal()">&times;</span>
+            <h3 id="giftTitle">Hadiah Terbuka!</h3>
+            <div class="img-wrapper">
+                <img id="giftImage" src="" class="gift-img">
+            </div>
+            <p id="giftText" style="font-weight:bold; color:#ff4757;"></p>
+            <button class="btn-download" onclick="tandaiSelesai()">Simpan Hadiah ❤️</button>
+        </div>
+    </div>
+
+    <div id="passModal" class="modal hidden">
+        <div class="modal-content glass-dark">
+            <span class="close-btn" onclick="tutupPass()">&times;</span>
+            <h3>Eits! Terkunci 🔒</h3>
+            <p>Untuk buka hadiah terakhir ini, masukin password dulu:</p>
+            <input type="text" id="passInput" placeholder="Jawab di sini...">
+            <p class="clue">Clue: Tanggal jadian kita (ddmmyy)</p>
+            <button class="btn-unlock" onclick="cekPassword()">Buka Gembok</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

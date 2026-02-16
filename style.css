@@ -1,0 +1,420 @@
+/* =========================================
+   1. IMPORT FONT & RESET DASAR
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;600;800&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* Background Gradient Soft Pink-Ungu */
+    background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
+    background-image: linear-gradient(to top, #fad0c4 0%, #fad0c4 1%, #ffd1ff 100%);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #4a4a4a;
+}
+
+.hidden { display: none !important; }
+
+/* =========================================
+   2. ANIMASI BACKGROUND KOTAK (SQUARES)
+   ========================================= */
+.bg-squares {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.bg-squares li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px; height: 20px;
+    background: rgba(255, 255, 255, 0.4);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    border-radius: 10%;
+}
+
+.bg-squares li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.bg-squares li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.bg-squares li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.bg-squares li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.bg-squares li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.bg-squares li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.bg-squares li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.bg-squares li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.bg-squares li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.bg-squares li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+@keyframes animate {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; }
+}
+
+/* =========================================
+   3. CONTAINER KACA (GLASSMORPHISM)
+   Hanya untuk Page 1 & Page 3
+   ========================================= */
+.container.glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 30px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+}
+
+h1, h2 {
+    font-family: 'Pacifico', cursive;
+    color: #ff4757;
+    margin: 10px 0;
+    text-shadow: 2px 2px 0px rgba(255,255,255,0.6);
+}
+
+h1 { font-size: 2.2rem; }
+h2 { font-size: 2rem; }
+
+.subtitle {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.sticker {
+    width: 130px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   4. SETTING HALAMAN 2 (PILIH KADO) - FIX TENGAH
+   ========================================= */
+#page2 {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw !important; /* Paksa Full Layar */
+    max-width: none !important;
+    height: 100vh !important;
+    margin: 0 !important;
+
+    /* Posisi Tengah */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    padding-top: 50px;
+    
+    /* Hapus kotak background */
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    z-index: 50;
+}
+
+/* Tulisan di Halaman 2 */
+#page2 h2 {
+    color: #fff;
+    font-size: 3rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+    margin-bottom: 10px;
+}
+
+#page2 .subtitle {
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 100%;
+    z-index: 100;
+}
+
+/* =========================================
+   5. KADO MELAYANG (FLOATING GIFTS)
+   ========================================= */
+.floating-area {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.gift-box {
+    position: absolute;
+    width: 120px; /* Ukuran Kado */
+    height: 120px;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: floatingObj 3s ease-in-out infinite;
+    z-index: 60;
+    transition: transform 0.3s;
+}
+
+.gift-box img {
+    width: 100%; height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 15px 15px rgba(0,0,0,0.2));
+}
+
+.gift-box:hover {
+    transform: scale(1.15);
+}
+
+/* --- KOORDINAT POSISI KADO --- */
+
+/* Kado 1: Kiri */
+.float-1 {
+    top: 30%;
+    left: 20%;
+    animation-duration: 4s;
+}
+
+/* Kado 2: Kanan */
+.float-2 {
+    top: 30%;
+    right: 20%;
+    animation-duration: 3.5s;
+    animation-delay: 0.5s;
+}
+
+/* Kado 3: Tengah Bawah */
+.float-3 {
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-duration: 5s;
+}
+
+/* Animasi Melayang */
+@keyframes floatingObj {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Khusus Kado 3 (biar tetap center horizontal) */
+@keyframes floatingObjCenter {
+    0% { transform: translate(-50%, 0px); }
+    50% { transform: translate(-50%, -20px); }
+    100% { transform: translate(-50%, 0px); }
+}
+.float-3 { animation-name: floatingObjCenter; }
+
+
+/* Efek Klaim */
+.claimed { opacity: 0.6; pointer-events: none; filter: grayscale(100%); }
+.claimed::after {
+    content: '✅'; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%); font-size: 4rem; text-shadow: 0 0 15px white;
+}
+
+/* =========================================
+   6. MODAL & EFEK GACHA/EPIC REVEAL
+   ========================================= */
+
+/* --- MODAL BACKGROUND (Gelap Blur) --- */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.85); /* Gelap banget biar dramatis */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    backdrop-filter: blur(5px);
+}
+
+/* --- KONTEN MODAL (TRANSPARAN) --- */
+.modal-content {
+    background: transparent;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: none;
+    animation: popUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes popUp {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* --- KHUSUS MODAL PASSWORD (TETAP ADA KOTAKNYA BIAR JELAS) --- */
+#passModal .modal-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(255, 71, 87, 0.5);
+}
+#passModal h3 { color: #ff4757; text-shadow: none; }
+#passModal p { color: #555; text-shadow: none; }
+
+
+/* --- EFEK CAHAYA DI BELAKANG HADIAH --- */
+.img-wrapper {
+    background: transparent;
+    padding: 0;
+    margin: 20px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Sinar Berputar (Holy Light) */
+.img-wrapper::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 255, 255, 0.8) 20deg, transparent 40deg, rgba(255, 255, 255, 0.8) 60deg, transparent 80deg, rgba(255, 255, 255, 0.8) 100deg, transparent 120deg, rgba(255, 255, 255, 0.8) 140deg, transparent 160deg, rgba(255, 255, 255, 0.8) 180deg, transparent 200deg, rgba(255, 255, 255, 0.8) 220deg, transparent 240deg, rgba(255, 255, 255, 0.8) 260deg, transparent 280deg, rgba(255, 255, 255, 0.8) 300deg, transparent 320deg, rgba(255, 255, 255, 0.8) 340deg, transparent 360deg);
+    border-radius: 50%;
+    z-index: -1;
+    animation: rotateLight 10s linear infinite;
+    filter: blur(10px);
+    opacity: 0.6;
+}
+
+/* Sinar Glow Tengah */
+.img-wrapper::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 70%);
+    z-index: -1;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes rotateLight {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+    from { transform: scale(1); opacity: 0.8; }
+    to { transform: scale(1.2); opacity: 1; }
+}
+
+/* --- GAMBAR HADIAH --- */
+.gift-img {
+    width: 180px !important; /* Perbesar gambar */
+    border-radius: 0;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(255,255,255,0.8));
+    animation: floatingReveal 3s ease-in-out infinite;
+}
+
+@keyframes floatingReveal {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+/* --- TEKS POPUP --- */
+#giftTitle {
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: 0 0 10px #ff4757, 0 0 20px #ff4757; /* Efek Neon */
+    margin-bottom: 0;
+}
+
+#giftText {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 2px 2px 0px #000; /* Outline hitam */
+    margin-bottom: 20px;
+}
+
+/* --- TOMBOL --- */
+.btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
+button { padding: 12px 30px; border-radius: 50px; border: none; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+
+.yes, .btn-download, .btn-unlock { 
+    background: linear-gradient(45deg, #ff4757, #ff6b81); 
+    color: white; 
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.5); 
+    border: 2px solid white;
+}
+.yes:hover, .btn-download:hover, .btn-unlock:hover { transform: scale(1.05); box-shadow: 0 0 25px #ff4757; }
+.no {
+    background: white;
+    color: #ff4757;
+    border: 2px solid #ff4757;
+    
+    /* PENTING AGAR TIDAK MENGHILANG: */
+    position: relative; 
+    z-index: 9999; /* Pastikan layer paling atas */
+    transition: left 0.4s ease, top 0.4s ease; /* Animasi gerak halus */
+}
+
+/* Close Button (X) */
+.close-btn {
+    position: absolute;
+    top: -50px; right: 0;
+    font-size: 30px;
+    cursor: pointer;
+    color: white;
+    background: rgba(255,255,255,0.2);
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    border: 2px solid white;
+}
+.close-btn:hover { background: #ff4757; transform: rotate(90deg); transition: 0.3s; }
+
+/* Input Password */
+input {
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    width: 80%;
+    margin-top: 10px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    font-size: 1rem;
+}
+input:focus { border-color: #ff4757; }
+.clue { font-size: 0.8rem; color: #888; font-style: italic; margin-top: 5px; }
+
+/* =========================================
+   7. RESPONSIVE HP (MEDIA QUERY)
+   ========================================= */
+@media (max-width: 768px) {
+    #page2 h2 { font-size: 2rem; margin-top: 50px; }
+    #page2 .subtitle { font-size: 0.9rem; }
+    
+    /* Ukuran kado di HP */
+    .gift-box { width: 90px; height: 90px; }
+
+    /* Posisi di HP (Lebih Rapat ke Pinggir) */
+    .float-1 { top: 30%; left: 10%; }
+    .float-2 { top: 45%; right: 10%; }
+    .float-3 { bottom: 20%; left: 50%; }
+}
