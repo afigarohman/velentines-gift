@@ -103,7 +103,58 @@ h2 { font-size: 2rem; }
 }
 
 /* =========================================
-   4. SETTING HALAMAN 2 (PILIH KADO) - FIX TENGAH
+   4. POSISI TOMBOL (UPDATED)
+   ========================================= */
+.btn-group {
+    display: flex;              /* Agar sejajar ke samping */
+    justify-content: center;    /* Posisi tengah */
+    align-items: center;        /* Lurus vertikal */
+    gap: 20px;                  /* Jarak antar tombol Yes & No */
+    margin-top: 25px;
+    width: 100%;
+}
+
+button {
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Tombol Yes & Tombol Aksi Lainnya */
+.yes, .btn-download, .btn-unlock { 
+    background: linear-gradient(45deg, #ff4757, #ff6b81); 
+    color: white; 
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.5); 
+    border: 2px solid white;
+    transition: transform 0.2s;
+}
+
+.yes:hover, .btn-download:hover, .btn-unlock:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 0 25px #ff4757; 
+}
+
+/* Tombol NO (JANGAN UBAH INI) */
+.no {
+    background: white;
+    color: #ff4757;
+    border: 2px solid #ff4757;
+    
+    /* POSISI AWAL: Relative biar duduk manis di samping Yes */
+    position: relative; 
+    z-index: 9999; /* Selalu di paling atas */
+    
+    /* ANIMASI: Transisi halus biar gak ngeblink saat kabur */
+    transition: left 0.5s ease, top 0.5s ease;
+}
+
+/* =========================================
+   5. SETTING HALAMAN 2 (PILIH KADO) - FIX TENGAH
    ========================================= */
 #page2 {
     position: fixed;
@@ -148,7 +199,7 @@ h2 { font-size: 2rem; }
 }
 
 /* =========================================
-   5. KADO MELAYANG (FLOATING GIFTS)
+   6. KADO MELAYANG (FLOATING GIFTS)
    ========================================= */
 .floating-area {
     position: absolute;
@@ -229,7 +280,7 @@ h2 { font-size: 2rem; }
 }
 
 /* =========================================
-   6. MODAL & EFEK GACHA/EPIC REVEAL
+   7. MODAL & EFEK GACHA/EPIC REVEAL
    ========================================= */
 
 /* --- MODAL BACKGROUND (Gelap Blur) --- */
@@ -351,28 +402,6 @@ h2 { font-size: 2rem; }
     margin-bottom: 20px;
 }
 
-/* --- TOMBOL --- */
-.btn-group { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
-button { padding: 12px 30px; border-radius: 50px; border: none; font-family: 'Poppins', sans-serif; font-weight: 600; cursor: pointer; transition: transform 0.2s; }
-
-.yes, .btn-download, .btn-unlock { 
-    background: linear-gradient(45deg, #ff4757, #ff6b81); 
-    color: white; 
-    box-shadow: 0 0 15px rgba(255, 71, 87, 0.5); 
-    border: 2px solid white;
-}
-.yes:hover, .btn-download:hover, .btn-unlock:hover { transform: scale(1.05); box-shadow: 0 0 25px #ff4757; }
-.no {
-    background: white;
-    color: #ff4757;
-    border: 2px solid #ff4757;
-    
-    /* PENTING AGAR TIDAK MENGHILANG: */
-    position: relative; 
-    z-index: 9999; /* Pastikan layer paling atas */
-    transition: left 0.4s ease, top 0.4s ease; /* Animasi gerak halus */
-}
-
 /* Close Button (X) */
 .close-btn {
     position: absolute;
@@ -404,7 +433,7 @@ input:focus { border-color: #ff4757; }
 .clue { font-size: 0.8rem; color: #888; font-style: italic; margin-top: 5px; }
 
 /* =========================================
-   7. RESPONSIVE HP (MEDIA QUERY)
+   8. RESPONSIVE HP (MEDIA QUERY)
    ========================================= */
 @media (max-width: 768px) {
     #page2 h2 { font-size: 2rem; margin-top: 50px; }

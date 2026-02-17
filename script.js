@@ -11,7 +11,7 @@ const daftarHadiah = [
         img: "img/eskrim.png" // Pastikan file ada di folder img
     },
     { 
-        name: "Peluk & Cium 🤗", 
+        name: "Free Hug & Kisses 🤗", 
         // Link Online (Giphy)
         img: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXBwaHZ3cjhzcWo0YXpmaGZvbnpwaWdiaG9ncDNwYTJ1Mjg3cGl4cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qFmdpUKAFZ6rMobzzu/giphy.gif" 
     }   
@@ -53,32 +53,45 @@ function goToGifts() {
     document.getElementById('page2').classList.remove('hidden');
 }
 
+// ==========================================
+// LOGIKA TOMBOL KABUR (Update Terbaru)
+// ==========================================
 const btnNo = document.getElementById('btnNo');
 
-// Event untuk PC (Mouse) dan HP (Touch)
-btnNo.addEventListener('mouseover', kabur);
-btnNo.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    kabur();
-});
+// Fungsi untuk membuat tombol kabur
+function kabur(e) {
+    // Mencegah tombol diklik beneran (khusus HP)
+    if (e) e.preventDefault();
 
-function kabur() {
+    // 1. Ambil Ukuran Layar & Tombol
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const btnWidth = btnNo.offsetWidth;
     const btnHeight = btnNo.offsetHeight;
 
-    // Batas aman (Lebar Layar - Lebar Tombol - Margin 50px)
-    const maxX = windowWidth - btnWidth - 50; 
-    const maxY = windowHeight - btnHeight - 50;
+    // 2. Hitung Batas Aman (Agar tidak keluar layar)
+    // Layar - Ukuran Tombol - Margin Aman (misal 20px biar gak mepet banget)
+    const maxX = windowWidth - btnWidth - 20;
+    const maxY = windowHeight - btnHeight - 20;
 
-    const randomX = Math.max(20, Math.random() * maxX);
-    const randomY = Math.max(20, Math.random() * maxY);
+    // 3. Tentukan Koordinat Acak di dalam Batas Aman
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
 
-    btnNo.style.position = 'fixed';
+    // 4. Terapkan Posisi Baru
+    btnNo.style.position = 'fixed'; // Ubah jadi fixed biar bebas gerak
     btnNo.style.left = randomX + 'px';
     btnNo.style.top = randomY + 'px';
 }
+
+// Event Listener untuk PC (Mouse Over / Kursor mendekat)
+btnNo.addEventListener('mouseover', kabur);
+
+// Event Listener untuk HP (Touch / Sentuh layar)
+btnNo.addEventListener('touchstart', kabur);
+
+// Event Listener Klik (Jaga-jaga kalau ada yang cepet banget ngeklik)
+btnNo.addEventListener('click', kabur);
 
 // ==========================================
 // 5. LOGIKA BUKA KADO
